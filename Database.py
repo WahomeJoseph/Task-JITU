@@ -10,13 +10,8 @@ def get_driver_points(db_path):
     cursor = conn.cursor()
     
     # sql query
-    query = """
-    SELECT *
-    FROM races
-    WHERE year = 2020
-    ORDER BY driver_points;
-    """
-    
+    query = """ select * from races where year = 2020 order by driver_points; """
+       
     try:
         # Execute the query
         cursor.execute(query)
