@@ -1,0 +1,68 @@
+import sqlite3
+
+  // reate a new SQLite database
+conn = sqlite3.connect('drivers.db')
+cursor = conn.cursor()
+
+  // CREATE TABLES
+// create the tables users
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS users (
+    driver_id INTEGER PRIMARY KEY,
+    driver_name TEXT,
+)
+''')
+
+ // create the tables races
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS race (
+    race_id INTEGER PRIMARY KEY,
+    race_name TEXT,
+)
+''')
+               
+ // create the tables teams
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS teams (
+    team_id INTEGER PRIMARY KEY,
+    team_name TEXT,
+)
+''')
+               
+ // create the tables location
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS location (
+    location_id INTEGER PRIMARY KEY,
+    location_name TEXT,
+)
+''')
+
+  // INSERT DATA INTO TABLES
+// insert data into the table drivers
+cursor.execute('''
+INSERT INTO users (driver_name, year)
+VALUES ('Lewis Hamilton', '2020'), ('Valteri Bottas', '2020'), ('Sergio Perez', '2020'), ('Pierre Gasly', '2020'), ('Max Verstappen', '2020')
+''')
+                            
+// insert data into the tables races
+cursor.execute('''
+INSERT INTO race (race_name)
+VALUES ('Portuguese Grand Prix'), ('Russian Grand Prix'), ('Emilia Romagna Grand Prix'), ('Hungarian Grand Prix'), ('Tuscan Grand Prix'), ('Sakhir Grand Prix'),  ('Eifel Grand Prix'), ('Bahrain Grand Prix'), ('Spanish Grand Prix'), ('Tuscan Grand Prix'), ('Italian Grand Prix'), ('Styrian Grand Prix'), ('70th Anniversary Grand Prix'), ('Australian Grand Prix'), ('Turkish Grand Prix'), ('British Grand Prix')                         
+''')
+               
+// insert data into the tables teams
+cursor.execute('''
+INSERT INTO race (team_name)
+VALUES ('Mercedes'), ('Racing Point'), ('Alpha Tauri'), ('Red Bull')
+''')
+
+  // insert data into the tables location
+cursor.execute('''
+INSERT INTO location (location_name)
+VALUES ('Portimao'), ('Sochi'), ('Imola'), ('Budapest'), ('Mugello'), ('Sakhir'),  ('Nurburg'), ('Monza'), ('Silverstone'), ('Istanbul'), ('Spielburg'), ('Montmelo')
+''')              
+// commit the changes and close the connection
+conn.commit()
+conn.close()
+
+print("Database created and data inserted.")
